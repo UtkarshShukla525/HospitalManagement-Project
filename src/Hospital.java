@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Scanner;
 
 public class Hospital {
@@ -75,7 +76,7 @@ public class Hospital {
         patients.add(p3);
         patients.add(p4);
 
-        ArrayList<Medicine> medicines=new ArrayList();
+        ArrayList<Medicine> medicines=new ArrayList<>();
         Medicine m1=new Medicine();
         Medicine m2=new Medicine();
         Medicine m3=new Medicine();
@@ -154,7 +155,7 @@ public class Hospital {
         labs.add(l4);
 
         Scanner sc=new Scanner(System.in);
-        int status=1,choice,dcount=4,c1,c12,pcount=4,c2,c22,mcount=4,c3,c32,scount=4,c4,c42,lcount=4,c5,c52;
+        int status=1,choice,c1,c12,c2,c22,c3,c32,c4,c42,c5,c52;
         while (status==1){
             System.out.println("-----------------------------------------------------------------------------------");
             System.out.println("                              ** MAIN MENU **                                      ");
@@ -177,13 +178,12 @@ public class Hospital {
                             Doctor d=new Doctor();
                             d.newDoctor();
                             doctors.add(d);
-                            dcount++;
                         }
                         else if(c12==2){
                             System.out.println("Id\tName\tQualification\tSpecialist\tAvailableTime\tRoomNo.");
-                            for (int i = 0; i < dcount; i++) {
-                                Doctor d=doctors.get(i);
-                                System.out.println();
+                            Iterator itr=doctors.iterator();
+                            while(itr.hasNext()){
+                                Doctor d=(Doctor) itr.next();
                                 d.doctorInfo();
                             }
                         }
@@ -207,12 +207,12 @@ public class Hospital {
                             Patient p=new Patient();
                             p.newPatient();
                             patients.add(p);
-                            pcount++;
                         }
                         else if(c22==2){
                             System.out.println("Id\tName\tDisease\tGender\tAdmitStatus\tAge");
-                            for (int i = 0; i < pcount; i++) {
-                                Patient p=patients.get(i);
+                            Iterator itr=patients.iterator();
+                            while(itr.hasNext()){
+                                Patient p=(Patient) itr.next();
                                 p.patientInfo();
                             }
                         }else {
@@ -235,12 +235,12 @@ public class Hospital {
                             Medicine m=new Medicine();
                             m.newMedicine();
                             medicines.add(m);
-                            mcount++;
                         }
                         else if(c32==2){
                             System.out.println("Medicine Name\tCompany\tCost\tQuantity\tExpiry date");
-                            for (int i = 0; i < mcount; i++) {
-                                Medicine m=medicines.get(i);
+                            Iterator itr=medicines.iterator();
+                            while(itr.hasNext()){
+                                Medicine m=(Medicine) itr.next();
                                 m.findMedicine();
                             }
                         }
@@ -264,12 +264,13 @@ public class Hospital {
                             Staff s=new Staff();
                             s.newStaff();
                             staffs.add(s);
-                            scount++;
+
                         }
                         else if(c42==2){
                             System.out.println("Id\tStaff Name\tDesignation\tGender\tSalary");
-                            for (int i = 0; i < scount; i++) {
-                                Staff s=staffs.get(i);
+                            Iterator itr=staffs.iterator();
+                            while(itr.hasNext()){
+                                Staff s=(Staff) itr.next();
                                 s.staffInfo();
                             }
                         }else {
@@ -292,12 +293,12 @@ public class Hospital {
                             Lab l=new Lab();
                             l.newFacility();
                             labs.add(l);
-                            lcount++;
                         }
                         else if(c52==2){
                             System.out.println("Lab Name\tLab Cost");
-                            for (int i = 0; i < lcount; i++) {
-                                Lab l=labs.get(i);
+                            Iterator itr=labs.iterator();
+                            while(itr.hasNext()){
+                                Lab l =(Lab) itr.next();
                                 l.showFacility();
                             }
                         }else {
